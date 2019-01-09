@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loadPage();
+  this.loadPage();
 
     this.store.select(state => state.users)
       .pipe(delay(1000), defaultIfEmpty())
@@ -38,7 +38,7 @@ export class HomePageComponent implements OnInit {
   loadPage(): void {
     this.userService.getUsers().subscribe(users => {
       this.store.dispatch(new All_Actions.LoadUsers(users));
-      console.log("(Servicio) users: ", users);
+      //console.log("(Servicio) users: ", users);
     });
   }
 

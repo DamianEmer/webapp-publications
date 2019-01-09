@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 
 import { StoreModule } from '@ngrx/store';
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { appReducers } from './shared/store/reducers/app.reducers';
-//import { environment } from 'src/environments/environment';
+//import { EffectsModule } from '@ngrx/effects';
+
 import { HttpClientModule } from '@angular/common/http';
+//import { UserEffects } from './shared/store/effects/users.effects';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot( appReducers ),
+    //EffectsModule.forRoot([UserEffects])
     // StoreDevtoolsModule.instrument({
     //   maxAge: 25,
     //   logOnly: environment.production
