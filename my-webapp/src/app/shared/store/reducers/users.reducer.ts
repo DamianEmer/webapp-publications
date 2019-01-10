@@ -15,12 +15,12 @@ export const initialState: State = {
 
 export function userReducer(state: State = initialState, action: All_Actions): State {
     switch (action.type) {
-        case ActionTypes.LOADING_USERS:
+        case ActionTypes.LOAD_USERS:
             return {
                 ...state,
                 isLoading: true
             };
-        case ActionTypes.LOAD_USERS:
+        case ActionTypes.LOAD_USERS_SUCCESS:
             return {
                 ...state,
                 isLoading: false,

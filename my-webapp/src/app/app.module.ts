@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app.routing';
 
 import { StoreModule } from '@ngrx/store';
 import { appReducers } from './shared/store/reducers/app.reducers';
-//import { EffectsModule } from '@ngrx/effects';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { HttpClientModule } from '@angular/common/http';
-//import { UserEffects } from './shared/store/effects/users.effects';
+import { UserEffects } from './shared/store/effects/users.effects';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -21,11 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot( appReducers ),
-    //EffectsModule.forRoot([UserEffects])
-    // StoreDevtoolsModule.instrument({
-    //   maxAge: 25,
-    //   logOnly: environment.production
-    // })
+    EffectsModule.forRoot([UserEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
