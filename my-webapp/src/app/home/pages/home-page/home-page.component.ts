@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/store/reducers/app.reducers';
 import * as All_Actions from '../../../shared/store/actions/users.actions';
 import { delay, isEmpty, defaultIfEmpty } from 'rxjs/operators';
+import { getUsers } from 'src/app/shared/store/selectors/users.selector';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home-page',
@@ -13,33 +15,23 @@ import { delay, isEmpty, defaultIfEmpty } from 'rxjs/operators';
 })
 export class HomePageComponent implements OnInit {
 
+  users$: Observable<User[]>;
+
   users: User[];
 
   displayedColumns: string[] = ['id', 'name', 'username', 'email'];
 
   constructor(private userService: UsersService,
-    private store: Store<AppState>) { }
+    private store: Store<AppState>) { 
+      this.users$ = this.store.select(getUsers);
+      this.users$.subscribe(data => {
+        this.users = data;
+      })
+    }
 
   ngOnInit() {
 
-  this.loadPage();
+    this.store.dispatch(new All_Actions.LoadUsers());
 
-    this.store.select(state => state.users)
-      .pipe(delay(1000), defaultIfEmpty())
-      .subscribe(users => {
-        //console.log("store: ", users)
-        if (users != undefined) {
-          this.users = users.users;
-          console.log("(Store) users", this.users);
-        }
-      });
   }
-
-  loadPage(): void {
-    this.userService.getUsers().subscribe(users => {
-      this.store.dispatch(new All_Actions.LoadUsers(users));
-      //console.log("(Servicio) users: ", users);
-    });
-  }
-
 }

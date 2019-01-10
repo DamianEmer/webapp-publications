@@ -8,11 +8,11 @@ const routes: Routes = [
     },
     {
         path: 'detail/:id',
-        loadChildren: './pages/detail-page/detail-page.module#DetailPageModule'
+        loadChildren: './detail-page/detail-page.module#DetailPageModule'
     },
     {
         path: '',
-        redirectTo: '/home',
+        redirectTo: 'home',
         pathMatch: ''
     }
 ]
