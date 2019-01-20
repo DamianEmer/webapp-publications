@@ -8,7 +8,7 @@ const routes: Routes = [
     },
     {
         path: 'detail/:id',
-        loadChildren: './detail-page/detail-page.module#DetailPageModule'
+        loadChildren: './pages/detail-page/detail-page.module#DetailPageModule'
     },
     {
         path: '',

@@ -4,7 +4,6 @@ import { User } from '../../models/user.interface';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/shared/store/reducers/app.reducers';
 import * as All_Actions from '../../../shared/store/actions/users.actions';
-import { delay, isEmpty, defaultIfEmpty } from 'rxjs/operators';
 import { getUsers } from 'src/app/shared/store/selectors/users.selector';
 import { Observable } from 'rxjs';
 
@@ -24,14 +23,9 @@ export class HomePageComponent implements OnInit {
   constructor(private userService: UsersService,
     private store: Store<AppState>) { 
       this.users$ = this.store.select(getUsers);
-      this.users$.subscribe(data => {
-        this.users = data;
-      })
     }
 
   ngOnInit() {
-
     this.store.dispatch(new All_Actions.LoadUsers());
-
   }
 }
