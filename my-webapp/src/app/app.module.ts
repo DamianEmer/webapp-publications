@@ -9,11 +9,10 @@ import { appReducers } from './shared/store/reducers/app.reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-//import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-
 import { HttpClientModule } from '@angular/common/http';
 import { UserEffects } from './shared/store/effects/users.effects';
 import { environment } from 'src/environments/environment';
+import { effects } from './shared/store/effects';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot( appReducers ),
+    StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

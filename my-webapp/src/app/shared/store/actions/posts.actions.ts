@@ -7,11 +7,11 @@ export enum ActionTypes {
     LOAD_ERROR = '[Post] Load Error' 
 }
 
-export class LoadingPosts implements Action {
+export class LoadPosts implements Action {
     readonly type = ActionTypes.LOAD_POSTS;
 }
 
-export class LoadPosts implements Action {
+export class LoadPostsSuccess implements Action {
     readonly type = ActionTypes.LOAD_POSTS_SUCCESS;
 
     constructor(public payload: Post[]) { }
@@ -24,6 +24,6 @@ export class LoadError implements Action {
 }
 
 export type All_Actions = 
-    |   LoadingPosts
+    |   LoadPostsSuccess
     |   LoadPosts
     |   LoadError;
