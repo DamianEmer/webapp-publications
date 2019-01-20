@@ -1,16 +1,16 @@
 <div class="container">
   <section class="section__list">
     <h1>USER LIST</h1>
-    <table mat-table [dataSource]="users">
+    <table mat-table [dataSource]="users$ | async">
 
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> <a [routerLink]="['/detail', element.id]">{{element.id}}</a></td>
+        <td mat-cell *matCellDef="let element">{{element.id}}</td>
       </ng-container>
 
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"><a [routerLink]="['/detail', element.id]">{{element.name}}</a></td>
       </ng-container>
 
       <ng-container matColumnDef="username">
@@ -29,5 +29,4 @@
 
   </section>  
 </div>
-<!-- 
-<pre> {{ users$ | async | json}} </pre> -->
+<!-- <pre> {{ users$ | async | json}} </pre> -->

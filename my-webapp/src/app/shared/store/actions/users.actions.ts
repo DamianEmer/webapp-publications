@@ -14,13 +14,13 @@ export class LoadUsers implements Action {
 export class LoadUsersSuccess implements Action {
     readonly type = ActionTypes.LOAD_USERS_SUCCESS;
 
-    constructor(public payload: User[]) { }
+    constructor( public payload: User[] ) { }
 }
 
 export class LoadError implements Action {
     readonly type = ActionTypes.LOAD_ERROR;
 
-    constructor(public payload: string) { }
+    constructor( public payload: string ) { }
 }
 
 export type All_Actions =

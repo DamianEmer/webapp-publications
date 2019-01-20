@@ -18,20 +18,12 @@ export class UserEffects {
     @Effect()
     users$: Observable<Action> = this.actions$.pipe(
         ofType(fromUsers.ActionTypes.LOAD_USERS),
-        mergeMap(action => {
-            console.log('MergeMap (action): ' + action)
-            return this.userService.getUsers().pipe(
-                map((data: User[]) => {
-                    console.log("effects" + data);
-                    return new fromUsers.LoadUsersSuccess(data)
-                }
-                ),
-                catchError(() => {
-                    console.log("Error en la carga de datos");
-                    return of(new fromUsers.LoadError('Ocurrio un error en la carga'))
-                })
+        mergeMap(action =>
+            this.userService.getUsers().pipe(
+                map((data: User[]) => new fromUsers.LoadUsersSuccess(data)),
+                catchError(() => of(new fromUsers.LoadError('Ocurrio un error en la carga')))
             )
-        })
+        )
     );
 
 
